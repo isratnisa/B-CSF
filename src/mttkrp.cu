@@ -74,14 +74,17 @@ int main(int argc, char* argv[]){
     }
     // HYB CPU
     else if(Opt.impType == 10){
-        
+        double t0 = seconds();
         create_HCSR(X, Opt);
+        printf("create CSF - time: %.3f sec \n", seconds() - t0);
         HYBTensor HybX(X);
         cout << "Creating HYB... " ;
-        double t0 = seconds();
+        t0 = seconds();
         ((X.ndims == 3) ?  create_HYB(HybX, X, Opt) :  create_HYB_4D(HybX, X, Opt));   
         printf("create HYB - time: %.3f sec \n", seconds() - t0);
+        t0 = seconds();
         make_HybBin(HybX, Opt);
+        printf("create bin - time: %.3f sec \n", seconds() - t0);
         // print_HYBtensor(HybX);      
         // ((X.ndims == 3) ?  MTTKRP_HYB_CPU(HybX, U, Opt) :  MTTKRP_HYB_CPU_4D(HybX, U, Opt));   
         MTTKRP_HYB_GPU(HybX, U, Opt);      
