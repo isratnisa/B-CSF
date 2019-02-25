@@ -1,6 +1,8 @@
 ## Tensor format
 
-toy.tns  
+The input format is expected to start with the number of dimension of the tensor followed by the length of each dimension in the next line. The following lines will have the coordinates and values of each nonzero elements.
+
+An example of a 3x3x3 tensor - toy.tns:  
 3  
 3 3 3  
 1 1 1 1.00  
