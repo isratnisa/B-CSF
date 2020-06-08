@@ -18,6 +18,14 @@ An example of a 3x3x3 tensor - toy.tns:
 3 2 2 11.00   
 ```
 
+## Build requirements:
+- GCC Compiler 
+- CUDA SDK
+- Boost C++
+- OpenMP
+
+
+
 ## Build 
 
 `$ make`  
