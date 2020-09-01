@@ -1,4 +1,4 @@
-B-CSF or Balanced-CSF is a storage-efficient representation for sparse tensors that enables high-performance and load-balanced execution of tensor kernels on GPUs. Currently, it supports MTTKRP kernel from CP decomposition. In future, we plan to extend it to support all generic sparse tensor kernels. A optimized version of B-CSF, MM-CSF (SC'19) is available at /https://github.com/isratnisa/MM-CSF
+B-CSF or Balanced-CSF is a storage-efficient representation for sparse tensors that enables high-performance and load-balanced execution of tensor kernels on GPUs. Currently, it supports MTTKRP kernel from CP decomposition. In future, we plan to extend it to support all generic sparse tensor kernels. This work is published under the title "Load-Balanced Sparse MTTKRP on GPUs" (https://ieeexplore.ieee.org/document/8821030) in IPDPS'2019. A optimized version of B-CSF, MM-CSF (SC'19) is available at /https://github.com/isratnisa/MM-CSF
 
 ## Tensor format
 
