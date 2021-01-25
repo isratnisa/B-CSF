@@ -1,29 +1,13 @@
-B-CSF or Balanced-CSF is a storage-efficient representation for sparse tensors that enables high-performance and load-balanced execution of tensor kernels on GPUs. Currently, it supports MTTKRP kernel from CP decomposition. In future, we plan to extend it to support all generic sparse tensor kernels. This work is published under the title "Load-Balanced Sparse MTTKRP on GPUs" (https://ieeexplore.ieee.org/document/8821030) in IPDPS'2019. A optimized version of B-CSF, MM-CSF (SC'19) is available at /https://github.com/isratnisa/MM-CSF
+Sampled Dense-Dense Matrix Multiplication (SDDMM) is a primitive that has been shown to be usable as a core component in reformulations of many machine learning algorithms. It requires the computation of the product of two input dense matrices but only at locations of the result matrix corresponding to nonzero entries in a sparse third input matrix. In this work, we develop of cuSDDMM, a multi-node GPU-accelerated implementation for SDDMM. This work is published under the title "Sampled Dense Matrix Multiplication for High-Performance Machine Learning" (https://ieeexplore.ieee.org/abstract/document/8638042) in 2018 IEEE 25th International Conference on High Performance Computing (HiPC).
 
-## Tensor format
 
-The input format is expected to start with the number of dimension of the tensor followed by the length of each dimension in the next line. The following lines will have the coordinates and values of each nonzero elements.
+## Input format
 
-An example of a 3x3x3 tensor - toy.tns: 
-```
-3  
-3 3 3  
-1 1 1 1.00  
-1 2 2 2.00  
-1 3 1 10.00  
-2 1 3 7.00    
-2 3 1 6.00    
-2 3 2 5.00  
-3 1 3 3.00  
-3 2 2 11.00   
-```
+Suports Matrix Market (https://sparse.tamu.edu/about) input format. 
 
 ## Build requirements:
 - GCC Compiler 
 - CUDA SDK
-- Boost C++
-- OpenMP
-
 
 
 ## Build 
@@ -32,22 +16,11 @@ An example of a 3x3x3 tensor - toy.tns:
 
 ## Run
 
+`$ ./sddmm input K tile_size_X tile_size_Y`
+
 Example:
+`./sddmm nytimes.mtx 128 192 50000`
 
-`$ ./mttkrp -i toy.tns -m 0 -R 32 -t 1 -f 128`
-
-To see all the options: 
-  
-`./mttkrp --help`    
-```
-options:   
-        -R rank/feature : set the rank (default 32)  
-        -m mode : set the mode of MTTKRP (default 0)  
-        -t implementation type: 1: COO CPU, 2: HCSR CPU, 3: COO GPU 4: HCSR GPU 8: B-CSF 10: HB-CSF (default 1)   
-        -f fiber-splitting threshold: set the maximum length (nnz) for each fiber. Longer fibers will be split (default inf)  
-        -w warp per slice: set number of WARPs assign to per slice  (default 4)  
-        -i output file name: e.g., ../dataset/delicious.tns   
-        -o output file name: if not set not output file will be written
-        
+       
 
 
